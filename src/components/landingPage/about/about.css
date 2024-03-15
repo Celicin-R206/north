@@ -1,0 +1,10 @@
+.about .card{
+    border: 2px solid var(--color-line);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.about .card h1{
+    font-weight: bold;
+}
+

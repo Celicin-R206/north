@@ -1,0 +1,24 @@
+.apropos h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.apropos .l{
+    flex: 1;
+}
+
+.apropos .l button{
+    background: var(--pricipal-color);
+    color: #fff;
+    padding: .4rem 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--pricipal-color);
+}
+
+.apropos .r{
+    flex: 1;
+}
+
+.apropos .r img{
+    width: 100%;
+}

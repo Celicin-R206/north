@@ -1,0 +1,21 @@
+.header{
+    padding: .5rem 0rem;
+}
+
+.header .left img{
+    width: 6rem;
+}
+
+
+.header .right .btn button:nth-child(1){
+    background: var(--pricipal-color);
+    color: #fff;
+    padding: .4rem 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--pricipal-color);
+}
+.header .right .btn button:nth-child(2){
+    border: 2px solid var(--pricipal-color);
+    padding: .4rem 1rem;
+    border-radius: 8px;
+}
