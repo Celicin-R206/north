@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../../assets/icons/logo.png";
 import "./style.css";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,21 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 const Header = () => {
+  const [sendSms, setSendSms] = useState(false);
+  console.log(sendSms);
+  const handleSendMessage = () => {
+    setSendSms(true);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSendSms(false);
+    }, 5000);
+  }, [sendSms]);
+
+  console.log(sendSms);
   return (
     <div className="header">
       <div className=" container1 flex items-center justify-between">
@@ -24,49 +38,9 @@ const Header = () => {
           <a href="#">Accueil</a>
           <a href="#">A propos</a>
           <a href="#">Nos produit</a>
-
-          <Dialog>
-            <DialogTrigger asChild>
-              <a href="#">Contact</a>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Edit profile</DialogTitle>
-                <DialogDescription>
-                  Make changes to your profile here. Click save when you're
-                  done.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="name" className="text-right">
-                    Name
-                  </Label>
-                  <Input
-                    id="name"
-                    value="Pedro Duarte"
-                    className="col-span-3"
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="username" className="text-right">
-                    Username
-                  </Label>
-                  <Input
-                    id="username"
-                    value="@peduarte"
-                    className="col-span-3"
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <Button type="submit">Save changes</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
         </div>
         <div className="right flex items-center gap-8">
-          <span>
+          {/* <span>
             <svg
               className="w-[1.5rem]"
               xmlns="http://www.w3.org/2000/svg"
@@ -76,10 +50,88 @@ const Header = () => {
                 fill="#5B5B5B"
               />
             </svg>
-          </span>
+          </span> */}
           <div className="btn flex gap-4 items-center">
-            <button>S'inscrire</button>
-            <button>Se connecter</button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button>CONTACTEZ-NOUS</button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[500px]">
+                <DialogHeader>
+                  <DialogTitle>Envoyer un message</DialogTitle>
+                  <DialogDescription>
+                    Veuillez remplir ce formulaire ci-dessous pour nous
+                    contacter et discuter le prix des produits qui vous
+                    intéressent
+                  </DialogDescription>
+                  <p>Votre message sera envoyé à :</p>
+                  <div className="send flex justify-between gap-4 mt-10">
+                    <span className="flex gap-2 items-center border rounded-lg w-full">
+                      <img src="/gmail.svg" alt="gmail" className="w-[2rem]" />
+                      <small>Email</small>
+                    </span>
+                    <span className="flex gap-2 items-center border rounded-lg w-full">
+                      <img
+                        src="/whatapp.svg"
+                        alt="whatapp"
+                        className="w-[2rem]"
+                      />
+                      <small>WhatApp</small>
+                    </span>
+                  </div>
+                </DialogHeader>
+                {sendSms && (
+                  <p className="mt-4 bg-green-200 p-1">
+                    Votre message a été envoyé avec succès.
+                  </p>
+                )}
+                <div className="grid gap-4 py-4">
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="nom">nom</Label>
+                    <Input
+                      id="nom"
+                      // value="Pedro Duarte"
+                      className="col-span-3"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="email">email</Label>
+                    <Input
+                      id="email"
+                      // value="@peduarte"
+                      className="col-span-3"
+                      type="email"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="numero">numero</Label>
+                    <Input
+                      id="numero"
+                      // value="@peduarte"
+                      className="col-span-3"
+                      type="number"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="email">Votre message</Label>
+                    <Textarea
+                      placeholder="Type your message here."
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button
+                    type="submit"
+                    className="bg-[#0fbc60]"
+                    onClick={() => {
+                      handleSendMessage();
+                    }}>
+                    Envoyer
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
